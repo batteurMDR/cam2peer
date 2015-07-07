@@ -1,5 +1,2 @@
-# C2P
-A videoconference app using P2P
-
-
-Dev branch
+## C2P
+##### A videoconference app using P2P
