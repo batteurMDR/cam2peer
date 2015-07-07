@@ -1,2 +1,2 @@
-# cam2peer
-A live cam in P2P
+# C2P
+A videoconference app using P2P
