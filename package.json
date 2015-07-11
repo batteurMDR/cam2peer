@@ -26,6 +26,7 @@
     "url": "contact@louis-webdesign.com"
   },
   "dependencies": {
+    "materialize-css": "^0.96.1",
     "node-webkit-builder": "*"
   },
   "devDependencies": {
