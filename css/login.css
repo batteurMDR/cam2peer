@@ -1,0 +1,14 @@
+form{
+	margin-top: 50px;
+}
+
+.input-field label.active{
+	color: #b0bec5!important;
+}.input-field input:focus:not([readonly]){
+	border-bottom: 1px solid #b0bec5;
+	box-shadow: 0 1px 0 0 #b0bec5;
+}button.btn{
+	background-color: #78909c;
+}button.btn:hover{
+	background-color: #90a4ae;
+}

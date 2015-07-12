@@ -5,18 +5,27 @@
 		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
       	<link type="text/css" rel="stylesheet" href="node_modules/materialize-css/bin/materialize.css"  media="screen,projection"/>
       	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+      	<link rel="stylesheet" type="text/css" href="css/login.css">
 	</head>
-	<body class="blue-grey lighten-5 blue-text text-darken-2">
+	<body>
+		<nav class="blue-grey darken-1">
+    		<div class="nav-wrapper">
+      			<a class="brand-logo center">Connexion</a>
+		    </div>
+		</nav>
 		<div class="row container">
 			<form class="col offset-s3 s6 offset-m3 m6 offset-sl3 l6">
 				<div class="input-field col s12 m12 l12">
-					<input id="username" type="text" class="validate">
+					<input id="username" type="text" autocomplete="off">
           			<label for="username">Nom d'utilisateur</label>
 		        </div>
 				<div class="input-field col s12 m12 l12">
-		        	<input id="password" type="password" class="validate">
+		        	<input id="password" type="password" autocomplete="off">
           			<label for="password">Password</label>
           		</div>
+          		<button class="btn waves-effect waves-light" type="submit" name="action">
+          			Connexion
+  				</button>
 			</form>
 		</div>
 		<script type="text/javascript" src="bower_components/jquery/dist/jquery.min.js"></script>
@@ -24,6 +33,34 @@
 		<script type="text/javascript" src="js/peer.js"></script>
 		<script type="text/javascript" src="js/login.js"></script>
 		<script type="text/javascript">
+    	var nw = require('nw.gui');
+
+    	// Window menu
+    	var windowMenu = new nw.Menu({
+        	type: 'menubar'
+    	});
+
+    	// Help menu
+    	var helpMenu = new nw.Menu();
+
+    	windowMenu.createMacBuiltin("Cam2Peer");
+
+    	// Add to window menu
+    	windowMenu.append(new nw.MenuItem({
+        	label: 'Help',
+        	submenu: helpMenu
+    	}));
+
+    	// About sub-entry
+    	helpMenu.append(new nw.MenuItem({
+        	label: 'about',
+        	click: function(){
+            	alert('I made this!');
+        	}
+    	}));
+
+    	// Assign to window
+    	nw.Window.get().menu = windowMenu;
 		</script>
 	</body>
 </html>
