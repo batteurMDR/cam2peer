@@ -7,6 +7,7 @@ $(function(){
    	var windowMenu = new nw.Menu({
       	type: 'menubar'
    	});
+    windowMenu.createMacBuiltin("Cam2Peer");
     nw.Window.get().menu = windowMenu;
     var socket = io.connect("http://92.222.40.146:6650");
     socket.on('error',function(message){ 
@@ -32,6 +33,10 @@ $(function(){
         var callto = $('#username').val();
         call(peer,socket,callto);
     });
+    peer.on('call', function(call){
+      call.answer(window.localStream);
+      receive_call(peer,call);
+    });
 });
 function call(peer,socket,username){
     socket.emit("getppid",{username:username});
@@ -47,9 +52,19 @@ function call(peer,socket,username){
             window.existingCall = call;
             moviemod();
         }else{
-            alert('Erreur');
+            alert('Utilisateur introuvable');
         }
     });
+}
+function receive_call(peer,call){
+    if (window.existingCall){
+        window.existingCall.close();
+    }
+    call.on('stream', function(stream){
+        $('#their-video').prop('src', URL.createObjectURL(stream));
+    });
+    window.existingCall = call;
+    moviemod();
 }
 function moviemod(){
     $('#video-container').fadeIn();
