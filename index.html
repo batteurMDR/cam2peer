@@ -6,6 +6,7 @@
       	<link type="text/css" rel="stylesheet" href="node_modules/materialize-css/bin/materialize.css"  media="screen,projection"/>
       	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
       	<link rel="stylesheet" type="text/css" href="css/index.css">
+      	<meta charset="utf-8">
 	</head>
 	<body>
 		<nav class="blue-grey">
@@ -24,6 +25,17 @@
 	          		Appeler
 	  			</button>
 			</form>
+		</div>
+		<div class="answer valign-wrapper" style="display:none;"> 
+			<div class="valign center-align" style="margin:0 auto;">
+				<p class="who">Vous recevez un appelle</p>
+		        <button class="yes btn waves-effect waves-light" type="submit" name="action">
+		          	Décrocher
+		  		</button>
+		        <button class="no btn waves-effect waves-light" type="submit" name="action">
+		          		Raccrocher
+		  		</button>
+			</div>
 		</div>
      	<div class="col s12 m12 l12" id="video-container" style="display:none;">
         	<video id="their-video" autoplay></video>

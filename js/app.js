@@ -34,10 +34,27 @@ $(function(){
         call(peer,socket,callto);
     });
     peer.on('call', function(call){
-      call.answer(window.localStream);
-      receive_call(peer,call);
+        answer(call,function(){
+            $('.answer').fadeOut();
+            window.existingCall.close();
+        },function(){
+            $('.answer').hide();
+            call.answer(window.localStream);
+            receive_call(peer,call);
+        });
     });
 });
+function answer(call,error,success){
+    $('.answer').show();
+    $('.yes').click(function(e){
+        e.preventDefault();
+        success();
+    });
+    $('.no').click(function(e){
+        e.preventDefault();
+        error();
+    });
+}
 function call(peer,socket,username){
     socket.emit("getppid",{username:username});
     socket.on('getppid',function(d){
