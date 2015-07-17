@@ -19,48 +19,30 @@
 					<input id="username" type="text" autocomplete="off">
           			<label for="username">Nom d'utilisateur</label>
 		        </div>
-				<div class="input-field col s12 m12 l12">
-		        	<input id="password" type="password" autocomplete="off">
-          			<label for="password">Password</label>
-          		</div>
           		<button class="btn waves-effect waves-light" type="submit" name="action">
           			Connexion
   				</button>
 			</form>
 		</div>
 		<script type="text/javascript" src="bower_components/jquery/dist/jquery.min.js"></script>
+		<script src="https://cdn.socket.io/socket.io-1.3.5.js"></script>
 		<script type="text/javascript" src="node_modules/materialize-css/bin/materialize.js"></script>
 		<script type="text/javascript" src="js/peer.js"></script>
 		<script type="text/javascript" src="js/login.js"></script>
-		<script type="text/javascript">
-    	var nw = require('nw.gui');
-
-    	// Window menu
-    	var windowMenu = new nw.Menu({
-        	type: 'menubar'
-    	});
-
-    	// Help menu
-    	var helpMenu = new nw.Menu();
-
-    	windowMenu.createMacBuiltin("Cam2Peer");
-
-    	// Add to window menu
-    	windowMenu.append(new nw.MenuItem({
-        	label: 'Help',
-        	submenu: helpMenu
-    	}));
-
-    	// About sub-entry
-    	helpMenu.append(new nw.MenuItem({
-        	label: 'about',
-        	click: function(){
-            	alert('I made this!');
-        	}
-    	}));
-
-    	// Assign to window
-    	nw.Window.get().menu = windowMenu;
-		</script>
+        <script type="text/javascript">
+        require('nw.gui').Window.get().showDevTools();
+        $(function(){
+        	var socket = io.connect("http://92.222.40.146:6650");
+        	socket.on('error',function(message){ 
+      			console.log(message);
+    		});
+            $('form').submit(function(e){
+                e.preventDefault();
+                var that = $(this);
+                var username = that.find('#username').val();
+                login.login(socket,username);
+            });
+        });
+        </script>
 	</body>
 </html>
